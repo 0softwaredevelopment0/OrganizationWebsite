@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko-build
+  namespace: rizer001-site
+spec:
+  containers:
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:latest
+      args:
+        - "--dockerfile=/workspace/Dockerfile"
+        - "--context=dir:///workspace"
+        - "--destination=rizer001-site:latest"
+        - "--no-push"
+        - "--tarPath=/workspace/image.tar"
+      volumeMounts:
+        - name: workspace
+          mountPath: /workspace
+      resources:
+        requests:
+          cpu: 500m
+          memory: 512Mi
+        limits:
+          cpu: 2000m
+          memory: 2Gi
+  restartPolicy: Never
+  volumes:
+    - name: workspace
+      emptyDir:
+        sizeLimit: 2Gi
+  initContainers:
+    - name: copy-source
+      image: alpine:3.19
+      command: ["sh", "-c", "cp -r /src/* /workspace/ && ls -la /workspace/"]
+      volumeMounts:
+        - name: workspace
+          mountPath: /workspace
+        - name: source
+          mountPath: /src
+  nodeSelector:
+    kubernetes.io/hostname: root
+  tolerations:
+    - key: "node-role.kubernetes.io/control-plane"
+      operator: "Exists"
+      effect: "NoSchedule"
+  volumes:
+    - name: workspace
+      emptyDir:
+        sizeLimit: 2Gi
+    - name: source
+      hostPath:
+        path: /opt/websites/rizer001-site
+        type: Directory

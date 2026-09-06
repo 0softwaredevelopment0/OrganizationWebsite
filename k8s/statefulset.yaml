@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rizer001-site
+  namespace: rizer001-site
+  labels:
+    app: rizer001-site
+spec:
+  serviceName: rizer001-svc
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rizer001-site
+  template:
+    metadata:
+      labels:
+        app: rizer001-site
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: site
+          image: node:20-alpine
+          command: ["node", "/app/.next/standalone/server.js"]
+          ports:
+            - containerPort: 3001
+              name: http
+          envFrom:
+            - secretRef:
+                name: rizer001-env
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: HOSTNAME
+              value: "0.0.0.0"
+            - name: PORT
+              value: "3001"
+          volumeMounts:
+            - name: site-source
+              mountPath: /app/.next/standalone
+              subPath: .next/standalone
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3001
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3001
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+      volumes:
+        - name: site-source
+          hostPath:
+            path: /opt/websites/rizer001-site
+            type: Directory
+      nodeSelector:
+        kubernetes.io/hostname: root
