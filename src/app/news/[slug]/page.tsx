@@ -1,6 +1,26 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
+
+// Sanitize <title> text so admin-authored characters like </title><script>
+// cannot break out of the tag in the document head.
+function titleToSafeText(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const news = await prisma.news.findUnique({
+    where: { slug, published: true },
+    select: { title: true },
+  });
+  if (!news) return { title: "News" };
+  return { title: titleToSafeText(news.title) };
+}
 
 export default async function NewsArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

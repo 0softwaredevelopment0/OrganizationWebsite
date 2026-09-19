@@ -1,7 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { requireAdminApi } from "@/lib/auth-utils";
 
 // GET /api/chat/messages — get message history from DB
 export async function GET() {
@@ -42,12 +41,11 @@ export async function GET() {
   }
 }
 
-// DELETE /api/chat/messages — clear history (admin only)
+// DELETE /api/chat/messages — clear history (admin/owner only; role checked
+// against the DB, not the JWT)
 export async function DELETE() {
-  const session = await getServerSession(authOptions);
-  if (!session?.user || session.user.role !== "admin") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
+  const { error } = await requireAdminApi();
+  if (error) return error;
 
   try {
     const result = await prisma.chatMessage.deleteMany({});
