@@ -39,7 +39,7 @@ export default function ChatPage() {
   const [queueDepth, setQueueDepth] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const DISCORD_INVITE = "https://dsc.gg/rizer001-development";
+  const DISCORD_INVITE = "https://dsc.gg/softwaredev";
   const isAdmin = session?.user?.role === "admin";
 
   // Cooldown timer: every 2s cooldown decreases by 1
@@ -187,7 +187,7 @@ export default function ChatPage() {
           <div>
             <h1 className="text-3xl font-extrabold gradient-text">Discord</h1>
             <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              rizer001 community — message history
+              Software Development community — message history
             </p>
           </div>
           <a

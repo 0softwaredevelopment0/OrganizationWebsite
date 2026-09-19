@@ -30,7 +30,7 @@ export default function Navbar() {
       <div className="mx-auto h-full flex items-center justify-between px-6" style={{ maxWidth: "1100px" }}>
         {/* Logo */}
         <Link href="/" className="text-lg font-extrabold gradient-text tracking-tight">
-          &lt;rizer001 /&gt;
+          &lt;Software Development /&gt;
         </Link>
 
         {/* Desktop Links */}

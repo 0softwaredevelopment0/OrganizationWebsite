@@ -1,13 +1,16 @@
 import Link from "next/link";
 import GitHubProjects from "@/components/GitHubProjects";
 
+const GITHUB_ORG = "https://github.com/0softwaredevelopment0";
+const DISCORD_INVITE = "https://dsc.gg/softwaredev";
+
 async function getRepoCount() {
   try {
     const headers: HeadersInit = {};
     if (process.env.GITHUB_TOKEN) {
       headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
     }
-    const res = await fetch("https://api.github.com/users/rizer001/repos?per_page=100", {
+    const res = await fetch("https://api.github.com/orgs/0softwaredevelopment0/repos?per_page=100", {
       headers,
       next: { revalidate: 300 },
     });
@@ -32,7 +35,7 @@ export default async function HomePage() {
         }}
       >
         <div className="max-w-[700px]">
-          {/* Avatar */}
+          {/* Logo */}
           <div className="relative w-[120px] h-[120px] mx-auto mb-8">
             <div
               className="absolute -inset-[10px] rounded-full animate-[spin_4s_linear_infinite] opacity-60"
@@ -45,7 +48,7 @@ export default async function HomePage() {
               className="relative w-full h-full rounded-full flex items-center justify-center border-2 z-10"
               style={{ background: "var(--bg-card)", borderColor: "rgba(0, 212, 255, 0.3)" }}
             >
-              <span className="text-5xl font-black gradient-text">R</span>
+              <i className="fa-solid fa-cubes text-5xl gradient-text"></i>
             </div>
           </div>
 
@@ -58,13 +61,14 @@ export default async function HomePage() {
               backgroundClip: "text",
             }}
           >
-            rizer001
+            Software Development
           </h1>
           <p className="text-xl font-semibold mb-4" style={{ color: "var(--accent-cyan)" }}>
-            Developer &amp; Creator
+            Open-Source Organization
           </p>
           <p className="text-base mb-9" style={{ color: "var(--text-secondary)" }}>
-            Creating various software, open-source enthusiast.
+            We build open-source tools, plugins and utilities — launchers, messengers,
+            mods and more, all maintained under one roof.
           </p>
 
           <div className="flex gap-3 justify-center flex-wrap mb-14">
@@ -80,7 +84,7 @@ export default async function HomePage() {
               <i className="fa-solid fa-newspaper"></i> News
             </Link>
             <a
-              href="https://github.com/rizer001"
+              href={GITHUB_ORG}
               target="_blank"
               rel="noopener"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold border transition-all hover:scale-105 hover:-translate-y-1"
@@ -89,7 +93,7 @@ export default async function HomePage() {
               <i className="fa-brands fa-github"></i> GitHub
             </a>
             <a
-              href="https://dsc.gg/rizer001-development"
+              href={DISCORD_INVITE}
               target="_blank"
               rel="noopener"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold border transition-all hover:scale-105 hover:-translate-y-1"
@@ -109,16 +113,16 @@ export default async function HomePage() {
             </div>
             <div className="text-center">
               <span className="block text-4xl font-extrabold gradient-text">
-                <i className="fa-solid fa-award" style={{ fontSize: "2rem" }}></i>
+                <i className="fa-solid fa-code-fork" style={{ fontSize: "2rem" }}></i>
               </span>
               <span className="text-xs uppercase tracking-wider" style={{ color: "var(--text-muted)" }}>
-                High code quality
+                100% Open Source
               </span>
             </div>
             <div className="text-center">
-              <span className="block text-4xl font-extrabold gradient-text">1</span>
+              <span className="block text-4xl font-extrabold gradient-text">AGPL-3.0</span>
               <span className="text-xs uppercase tracking-wider" style={{ color: "var(--text-muted)" }}>
-                Team
+                License
               </span>
             </div>
           </div>
@@ -143,19 +147,19 @@ export default async function HomePage() {
                 color: "var(--accent-cyan)",
               }}
             >
-              <i className="fa-solid fa-user"></i>
+              <i className="fa-solid fa-people-group"></i>
             </span>
-            About me
+            About the organization
           </h2>
           <p className="text-base mb-14" style={{ color: "var(--text-secondary)", maxWidth: "600px" }}>
-            A developer who turns ideas into code
+            A community of developers turning ideas into open-source software
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
             {[
-              { icon: "fa-cubes", title: "Software Development", desc: "Creating applications, tools and plugins across various platforms and languages." },
-              { icon: "fa-cloud-arrow-up", title: "Open Source", desc: "All my projects are open source on GitHub. I believe in the power of community." },
-              { icon: "fa-rocket", title: "Innovation", desc: "Always learning new technologies to build modern solutions." },
+              { icon: "fa-cubes", title: "Software Development", desc: "We create applications, tools, mods and plugins across various platforms and languages." },
+              { icon: "fa-cloud-arrow-up", title: "Open Source", desc: "Every project is open source on GitHub and licensed under AGPL-3.0. We believe in the power of community." },
+              { icon: "fa-rocket", title: "Consistency", desc: "Shared conventions, code style and build systems across all our repositories." },
             ].map((card, i) => (
               <div key={i} className="card p-8 group">
                 <div
@@ -173,20 +177,20 @@ export default async function HomePage() {
             ))}
           </div>
 
-          {/* Skills */}
+          {/* Technologies */}
           <div>
-            <h3 className="text-xl font-bold mb-5">Skills</h3>
+            <h3 className="text-xl font-bold mb-5">Technologies</h3>
             <div className="flex flex-wrap gap-3">
               {[
                 { icon: "fa-brands fa-java", label: "Java" },
-                { icon: "fa-brands fa-js", label: "JavaScript" },
+                { icon: "fa-brands fa-rust", label: "Rust" },
                 { icon: "fa-solid fa-code", label: "TypeScript" },
-                { icon: "fa-solid fa-code", label: "Kotlin" },
                 { icon: "fa-brands fa-git-alt", label: "Git" },
                 { icon: "fa-solid fa-cube", label: "Paper API" },
                 { icon: "fa-solid fa-cubes", label: "NeoForge" },
                 { icon: "fa-solid fa-database", label: "SQL" },
                 { icon: "fa-brands fa-gradle", label: "Gradle" },
+                { icon: "fa-solid fa-gears", label: "Cargo" },
                 { icon: "fa-solid fa-terminal", label: "Bash" },
               ].map((skill) => (
                 <span
@@ -224,7 +228,7 @@ export default async function HomePage() {
             Projects
           </h2>
           <p className="text-base mb-14" style={{ color: "var(--text-secondary)", maxWidth: "600px" }}>
-            My open-source projects on GitHub
+            Everything we maintain on GitHub
           </p>
 
           <GitHubProjects />
@@ -246,7 +250,7 @@ export default async function HomePage() {
               backgroundClip: "text",
             }}
           >
-            Discord Community
+            Community
           </h2>
           <p className="text-base mb-8" style={{ color: "var(--text-secondary)" }}>
             Join the chat — talk, ask questions, follow updates
@@ -265,7 +269,7 @@ export default async function HomePage() {
               Open chat
             </Link>
             <a
-              href="https://dsc.gg/rizer001-development"
+              href={DISCORD_INVITE}
               target="_blank"
               rel="noopener"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-bold border transition-all hover:scale-105 hover:-translate-y-1"
@@ -295,17 +299,17 @@ export default async function HomePage() {
             >
               <i className="fa-solid fa-link"></i>
             </span>
-            Contacts
+            Links
           </h2>
           <p className="text-base mb-14" style={{ color: "var(--text-secondary)", maxWidth: "600px" }}>
-            Where to find me
+            Where to find us
           </p>
           <div className="flex justify-center gap-5 flex-wrap">
             {[
-              { href: "https://github.com/rizer001", icon: "fa-brands fa-github", label: "GitHub" },
-              { href: "https://dsc.gg/rizer001-development", icon: "fa-brands fa-discord", label: "Discord" },
-              { href: "https://t.me/rizer001", icon: "fa-brands fa-telegram", label: "Telegram" },
-              { href: "https://github.com/rizer001?tab=repositories", icon: "fa-brands fa-github", label: "All repos" },
+              { href: GITHUB_ORG, icon: "fa-brands fa-github", label: "GitHub" },
+              { href: DISCORD_INVITE, icon: "fa-brands fa-discord", label: "Discord" },
+              { href: `${GITHUB_ORG}?tab=repositories`, icon: "fa-brands fa-github", label: "All repos" },
+              { href: "https://github.com/0softwaredevelopment0/.github/discussions", icon: "fa-solid fa-comments", label: "Discussions" },
             ].map((link) => (
               <a
                 key={link.label}

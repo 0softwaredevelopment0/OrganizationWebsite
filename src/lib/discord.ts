@@ -30,8 +30,8 @@ export async function sendNewsToDiscord(title: string, content: string, url: str
           color: 0x00d4ff,
           timestamp: new Date().toISOString(),
           footer: {
-            text: "rizer001.dev",
-            icon_url: "https://github.com/rizer001.png",
+            text: "Software Development",
+            icon_url: "https://github.com/0softwaredevelopment0.png",
           },
         },
       ],

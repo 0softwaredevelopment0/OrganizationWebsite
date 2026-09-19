@@ -75,7 +75,7 @@ async function fetchPushCommits(repoName: string, base: string, head: string): P
 
 export async function GET(req: NextRequest) {
   try {
-    const username = process.env.GITHUB_USERNAME || "rizer001";
+    const username = process.env.GITHUB_USERNAME || "0softwaredevelopment0";
     const { searchParams } = new URL(req.url);
     const repo = searchParams.get("repo");
     const page = parseInt(searchParams.get("page") || "1", 10);

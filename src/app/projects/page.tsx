@@ -20,7 +20,7 @@ async function getAllRepos() {
     }
 
     const res = await fetch(
-      "https://api.github.com/users/rizer001/repos?sort=updated&per_page=100",
+      "https://api.github.com/orgs/0softwaredevelopment0/repos?sort=updated&per_page=100",
       { headers, next: { revalidate: 300 } }
     );
 
@@ -50,8 +50,8 @@ async function getAllRepos() {
 }
 
 export const metadata = {
-  title: "Projects — rizer001",
-  description: "All open-source projects by rizer001 on GitHub",
+  title: "Projects — Software Development",
+  description: "All open-source projects of the Software Development organization on GitHub",
 };
 
 export default async function ProjectsPage() {

@@ -10,9 +10,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           {/* Brand */}
           <div>
-            <span className="text-xl font-extrabold gradient-text">&lt;rizer001 /&gt;</span>
+            <span className="text-xl font-extrabold gradient-text">&lt;Software Development /&gt;</span>
             <p className="mt-3 text-sm" style={{ color: "var(--text-secondary)", maxWidth: "300px" }}>
-              Software Developer &amp; Creator. Open-source enthusiast.
+              We build open-source tools, plugins and utilities — all under one roof.
             </p>
           </div>
 
@@ -40,7 +40,7 @@ export default function Footer() {
             <h4 className="font-bold mb-4 text-sm">Social</h4>
             <div className="flex gap-3">
               <a
-                href="https://github.com/rizer001"
+                href="https://github.com/0softwaredevelopment0"
                 target="_blank"
                 rel="noopener"
                 className="flex items-center justify-center w-10 h-10 rounded-lg border transition-all hover:-translate-y-1"
@@ -50,7 +50,7 @@ export default function Footer() {
                 <i className="fa-brands fa-github"></i>
               </a>
               <a
-                href="https://dsc.gg/rizer001-development"
+                href="https://dsc.gg/softwaredev"
                 target="_blank"
                 rel="noopener"
                 className="flex items-center justify-center w-10 h-10 rounded-lg border transition-all hover:-translate-y-1"
@@ -59,22 +59,23 @@ export default function Footer() {
               >
                 <i className="fa-brands fa-discord"></i>
               </a>
-              <a
-                href="https://t.me/rizer001"
-                target="_blank"
-                rel="noopener"
-                className="flex items-center justify-center w-10 h-10 rounded-lg border transition-all hover:-translate-y-1"
-                style={{ background: "var(--bg-card)", borderColor: "var(--border-color)", color: "var(--text-secondary)" }}
-                aria-label="Telegram"
-              >
-                <i className="fa-brands fa-telegram"></i>
-              </a>
             </div>
           </div>
         </div>
 
         <div className="pt-6 border-t text-center text-xs" style={{ borderColor: "var(--border-color)", color: "var(--text-muted)" }}>
-          <p>rizer001. Open-source enthusiast.</p>
+          <p>
+            Software Development. Licensed under{" "}
+            <a
+              href="https://github.com/0softwaredevelopment0/.github/blob/main/LICENSE"
+              target="_blank"
+              rel="noopener"
+              style={{ color: "var(--accent-cyan)" }}
+            >
+              AGPL-3.0
+            </a>
+            .
+          </p>
         </div>
       </div>
     </footer>

@@ -53,7 +53,7 @@ export default function ProjectsClient({ repos }: { repos: Repo[] | null }) {
         <i className="fa-solid fa-triangle-exclamation text-3xl mb-4" style={{ color: "var(--accent-orange)" }}></i>
         <p className="text-lg font-semibold mb-2">Failed to load repositories</p>
         <a
-          href="https://github.com/rizer001?tab=repositories"
+          href="https://github.com/0softwaredevelopment0?tab=repositories"
           target="_blank"
           rel="noopener"
           className="font-semibold"

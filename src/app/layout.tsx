@@ -5,12 +5,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "rizer001 — Developer & Creator",
-  description: "Personal website of rizer001 — Software developer and open-source creator.",
+  title: "Software Development — Open-Source Organization",
+  description:
+    "Official website of the Software Development organization — we build open-source tools, plugins and utilities.",
   openGraph: {
-    title: "rizer001 — Developer & Creator",
-    description: "Personal website of rizer001 — Software developer and open-source creator.",
-    url: "https://github.com/rizer001",
+    title: "Software Development — Open-Source Organization",
+    description:
+      "Official website of the Software Development organization — we build open-source tools, plugins and utilities.",
+    url: "https://github.com/0softwaredevelopment0",
     type: "website",
   },
 };

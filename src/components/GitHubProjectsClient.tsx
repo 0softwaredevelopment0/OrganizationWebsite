@@ -16,7 +16,7 @@ export default function GitHubProjectsClient({ repos }: { repos: Repo[] | null }
         <p className="mb-4"><i className="fa-solid fa-triangle-exclamation text-2xl" style={{ color: "var(--accent-orange)" }}></i></p>
         <p className="mb-3">Failed to load projects</p>
         <a
-          href="https://github.com/rizer001"
+          href="https://github.com/0softwaredevelopment0"
           target="_blank"
           rel="noopener"
           className="inline-block font-semibold"

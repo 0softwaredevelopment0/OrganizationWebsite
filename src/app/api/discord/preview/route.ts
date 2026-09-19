@@ -61,7 +61,7 @@ export async function GET() {
 
     // If nothing is configured — return default info
     return NextResponse.json({
-      name: "rizer001 Development",
+      name: "Software Development",
       icon: null,
       memberCount: 0,
       onlineCount: 0,
@@ -73,7 +73,7 @@ export async function GET() {
     console.error("Discord preview error:", error);
     return NextResponse.json(
       {
-        name: "rizer001 Development",
+        name: "Software Development",
         icon: null,
         memberCount: 0,
         onlineCount: 0,

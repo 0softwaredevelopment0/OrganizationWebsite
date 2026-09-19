@@ -20,7 +20,7 @@ async function getRepos() {
     }
 
     const res = await fetch(
-      "https://api.github.com/users/rizer001/repos?sort=updated&per_page=100",
+      "https://api.github.com/orgs/0softwaredevelopment0/repos?sort=updated&per_page=100",
       { headers, next: { revalidate: 300 } }
     );
 
