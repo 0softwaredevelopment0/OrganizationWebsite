@@ -1,5 +1,6 @@
 import Link from "next/link";
 import GitHubProjects from "@/components/GitHubProjects";
+import GradleIcon from "@/components/GradleIcon";
 
 const GITHUB_ORG = "https://github.com/0softwaredevelopment0";
 const DISCORD_INVITE = "https://dsc.gg/softwaredev";
@@ -189,7 +190,7 @@ export default async function HomePage() {
                 { icon: "fa-solid fa-cube", label: "Paper API" },
                 { icon: "fa-solid fa-cubes", label: "NeoForge" },
                 { icon: "fa-solid fa-database", label: "SQL" },
-                { icon: "fa-brands fa-gradle", label: "Gradle" },
+                { label: "Gradle", custom: <GradleIcon /> },
                 { icon: "fa-solid fa-gears", label: "Cargo" },
                 { icon: "fa-solid fa-terminal", label: "Bash" },
               ].map((skill) => (
@@ -202,7 +203,13 @@ export default async function HomePage() {
                     color: "var(--text-secondary)",
                   }}
                 >
-                  <i className={skill.icon} style={{ color: "var(--accent-cyan)" }}></i>
+                  {skill.custom ? (
+                    <span className="inline-flex w-[1em]" style={{ color: "var(--accent-cyan)" }}>
+                      {skill.custom}
+                    </span>
+                  ) : (
+                    <i className={skill.icon} style={{ color: "var(--accent-cyan)" }}></i>
+                  )}
                   {skill.label}
                 </span>
               ))}
