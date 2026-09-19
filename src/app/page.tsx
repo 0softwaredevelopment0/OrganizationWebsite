@@ -114,16 +114,18 @@ export default async function HomePage() {
             </div>
             <div className="text-center">
               <span className="block text-4xl font-extrabold gradient-text">
+                <i className="fa-solid fa-medal" style={{ fontSize: "2rem" }}></i>
+              </span>
+              <span className="text-xs uppercase tracking-wider" style={{ color: "var(--text-muted)" }}>
+                High Code Quality
+              </span>
+            </div>
+            <div className="text-center">
+              <span className="block text-4xl font-extrabold gradient-text">
                 <i className="fa-solid fa-code-fork" style={{ fontSize: "2rem" }}></i>
               </span>
               <span className="text-xs uppercase tracking-wider" style={{ color: "var(--text-muted)" }}>
                 100% Open Source
-              </span>
-            </div>
-            <div className="text-center">
-              <span className="block text-4xl font-extrabold gradient-text">AGPL-3.0</span>
-              <span className="text-xs uppercase tracking-wider" style={{ color: "var(--text-muted)" }}>
-                License
               </span>
             </div>
           </div>
