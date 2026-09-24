@@ -14,6 +14,7 @@ export default function Navbar() {
     { href: "/", label: "Home" },
     { href: "/news", label: "News" },
     { href: "/#projects", label: "Projects" },
+    { href: "/wiki", label: "Wiki" },
     { href: "/chat", label: "Chat" },
   ];
 
