@@ -3,6 +3,9 @@ set -e
 
 echo "=== rizer001-site deploy ==="
 
+# kubectl runs under sudo; root has no kubeconfig, reuse the admin user's
+export KUBECONFIG="${KUBECONFIG:-/home/user/.kube/config}"
+
 # 1. Build image
 echo "[1/6] Building image..."
 cd /opt/websites/rizer001-site
@@ -21,7 +24,8 @@ kubectl apply -f /opt/websites/rizer001-site/k8s/service.yaml
 kubectl apply -f /opt/websites/rizer001-site/k8s/statefulset.yaml
 kubectl apply -f /opt/websites/rizer001-site/k8s/ingress.yaml
 
-# 4. Wait for rollout
+# 4. Wait for rollout (restart needed when image tag is unchanged)
+kubectl -n rizer001-site rollout restart statefulset/rizer001-site
 echo "[4/6] Waiting for StatefulSet rollout..."
 kubectl rollout status statefulset/rizer001-site -n rizer001-site --timeout=120s
 

@@ -46,3 +46,6 @@ java-backend/*.iml
 .idea/
 *.iml
 .gradle/
+
+# deploy artifact produced by Scripts/other/deploy_website.js
+rizer001-site.tar.gz

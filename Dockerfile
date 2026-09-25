@@ -2,6 +2,8 @@
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
+# Prisma schema must be present for the postinstall `prisma generate`
+COPY prisma ./prisma
 RUN npm ci --prefer-offline
 
 # ===== Stage 2: Build =====

@@ -5,7 +5,9 @@ metadata:
   namespace: rizer001-site
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    # TLS terminates on the front nginx, which proxies to the ingress over HTTP;
+    # redirecting here causes an infinite 308 loop
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/proxy-body-size: "10m"
 spec:
   ingressClassName: nginx

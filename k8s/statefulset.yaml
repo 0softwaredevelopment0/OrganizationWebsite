@@ -20,8 +20,8 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: site
-          image: node:20-alpine
-          command: ["node", "/app/.next/standalone/server.js"]
+          image: rizer001-site:latest
+          imagePullPolicy: Never  # image is imported into containerd (k8s.io) by deploy.sh
           ports:
             - containerPort: 3001
               name: http
@@ -36,9 +36,8 @@ spec:
             - name: PORT
               value: "3001"
           volumeMounts:
-            - name: site-source
-              mountPath: /app/.next/standalone
-              subPath: .next/standalone
+            - name: site-data
+              mountPath: /app/data
           resources:
             requests:
               cpu: 100m
@@ -61,9 +60,9 @@ spec:
             periodSeconds: 30
             timeoutSeconds: 5
       volumes:
-        - name: site-source
+        - name: site-data
           hostPath:
-            path: /opt/websites/rizer001-site
-            type: Directory
+            path: /opt/websites/rizer001-site/data
+            type: DirectoryOrCreate
       nodeSelector:
         kubernetes.io/hostname: root
