@@ -29,10 +29,11 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy built assets
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+# Copy built assets (--chown: standalone must be writable by nextjs for the
+# prerender cache, otherwise the runtime spams EACCES on .next/server/app)
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 # Copy generated Prisma client (v7: lives in node_modules/@prisma, WASM runtime)
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
